@@ -1,5 +1,4 @@
-{% set version = '5.1-1' %}
-
+{% set version = '5.1-2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,32 +9,34 @@ package:
 source:
   fn: rms_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/rms_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
-  sha256: c489948df5c434b40bcf5288844f5b4e08d157f36939d09230c1600f88d1bfe3
+    - {{ cran_mirror }}/src/contrib/rms_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
+  sha256: f1cfeef466ac436105756679353a3468027d97a600e3be755b819aef30ed9207
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
-    - r-hmisc >=4.0_2
+    - r-hmisc >=4.1_0
     - r-sparsem
     - r-ggplot2 >=2.2
-    - r-htmltable
+    - r-htmltable >=1.11.0
     - r-htmltools
     - r-lattice
     - r-multcomp
@@ -44,13 +45,13 @@ requirements:
     - r-quantreg
     - r-rpart
     - r-survival >=2.40_1
-
   run:
     - r-base
-    - r-hmisc >=4.0_2
+    - {{native}}gcc-libs         # [win]
+    - r-hmisc >=4.1_0
     - r-sparsem
     - r-ggplot2 >=2.2
-    - r-htmltable
+    - r-htmltable >=1.11.0
     - r-htmltools
     - r-lattice
     - r-multcomp
@@ -62,7 +63,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('rms')"  # [not win]
+    - $R -e "library('rms')"           # [not win]
     - "\"%R%\" -e \"library('rms')\""  # [win]
 
 about:
@@ -80,8 +81,8 @@ about:
     Buckley-James model, generalized least squares for serially or spatially correlated
     observations, generalized linear models, and quantile regression."
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'   # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'   # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
@@ -89,3 +90,5 @@ extra:
     - bgruening
     - daler
     - jdblischak
+    - cbrueffer
+    - dbast
