@@ -3,7 +3,7 @@ About r-rms
 
 Home: http://biostat.mc.vanderbilt.edu/rms
 
-Package license: GPL (>= 2)
+Package license: GPL-2
 
 Feedstock license: BSD 3-Clause
 
