@@ -1,4 +1,4 @@
-{% set version = '5.1-4' %}
+{% set version = "6.0-0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rms_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
-  sha256: 38f5844c4944a95b2adebea6bb1d163111270b8662399ea0349c45c0758076a6
+  sha256: e95a216663cbf6cec90ef1ea419268c352ba7226d0948dfa001fa7d086a90855
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -68,20 +68,12 @@ test:
 about:
   home: http://biostat.mc.vanderbilt.edu/rms
   license: GPL-2
-  summary: "Regression modeling, testing, estimation, validation, graphics, prediction, and typesetting
-    by storing enhanced model design attributes in the fit.  'rms' is a collection of
-    functions that assist with and streamline modeling.  It also contains functions
-    for binary and ordinal logistic regression models, ordinal models for continuous
-    Y with a variety of distribution families, and the Buckley-James multiple regression
-    model for right-censored responses, and implements penalized maximum likelihood
-    estimation for logistic and ordinary linear models.  'rms' works with almost any
-    regression model, but it was especially written to work with binary or ordinal regression
-    models, Cox regression, accelerated failure time models, ordinary linear models,\tthe
-    Buckley-James model, generalized least squares for serially or spatially correlated
-    observations, generalized linear models, and quantile regression."
+  summary: "Regression modeling, testing, estimation, validation, graphics, prediction, and typesetting by storing enhanced model design attributes in the fit.  'rms' is a collection of functions that assist with and streamline modeling.  It also contains functions for binary and ordinal logistic regression models, ordinal\
+    \ models for continuous Y with a variety of distribution families, and the Buckley-James multiple regression model for right-censored responses, and implements penalized maximum likelihood estimation for logistic and ordinary linear models.  'rms' works with almost any regression model, but it was especially written\
+    \ to work with binary or ordinal regression models, Cox regression, accelerated failure time models, ordinary linear models,\tthe Buckley-James model, generalized least squares for serially or spatially correlated observations, generalized linear models, and quantile regression."
   license_family: GPL2
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
