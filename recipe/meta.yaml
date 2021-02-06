@@ -1,4 +1,4 @@
-{% set version = "6.1-0" %}
+{% set version = "6.1-1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rms_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
-  sha256: b89ec3b9211a093bfe83a2a8107989b5ce3b7b7c323b88a5d887d99753289f52
+  sha256: 91367682149816659f554f6afd57e91de8c1271db344d0cf6653ad4f8169eefd
 
 build:
   merge_build_host: true  # [win]
