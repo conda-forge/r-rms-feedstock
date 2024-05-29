@@ -38,12 +38,10 @@ requirements:
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=4.8_0
+    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
-    - r-kableextra
     - r-knitr
-    - r-lattice
     - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
@@ -59,12 +57,10 @@ requirements:
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=4.8_0
+    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
-    - r-kableextra
     - r-knitr
-    - r-lattice
     - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
