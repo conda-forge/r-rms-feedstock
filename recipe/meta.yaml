@@ -1,4 +1,4 @@
-{% set version = "6.7-0" %}
+{% set version = "6.8-1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,19 +10,22 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rms_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
-  sha256: 8b3a14c47e2eafb24d9f0807f50af4b8bb8b44b0ec6bd6f38e0676f5a53dbbff
+  sha256: 9d38545749430763c242bae1181ce24a7f6f6b244e4c69348ab200b83925596a
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
+  skip: true  # [ppc64le]
 
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('fortran') }}        # [not win]
     - {{ compiler('m2w64_fortran') }}  # [win]
     - {{ posix }}filesystem            # [win]
@@ -36,12 +39,10 @@ requirements:
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=4.8_0
+    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
-    - r-kableextra
     - r-knitr
-    - r-lattice
     - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
@@ -57,12 +58,10 @@ requirements:
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=4.8_0
+    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
-    - r-kableextra
     - r-knitr
-    - r-lattice
     - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
