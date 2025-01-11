@@ -12,7 +12,7 @@ source:
   sha256: 9d38545749430763c242bae1181ce24a7f6f6b244e4c69348ab200b83925596a
 
 build:
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -31,6 +31,23 @@ requirements:
     - {{ posix }}sed                   # [win]
     - {{ posix }}coreutils             # [win]
     - {{ posix }}zip                   # [win]
+    - cross-r-base {{ r_base }}        # [build_platform != target_platform]
+    - r-cluster                        # [build_platform != target_platform]
+    - r-colorspace                     # [build_platform != target_platform]
+    - r-digest                         # [build_platform != target_platform]
+    - r-ggplot2                        # [build_platform != target_platform]
+    - r-hmisc >=5.1_0                  # [build_platform != target_platform]
+    - r-htmltable >=1.11.0             # [build_platform != target_platform]
+    - r-htmltools                      # [build_platform != target_platform]
+    - r-knitr                          # [build_platform != target_platform]
+    - r-mass                           # [build_platform != target_platform]
+    - r-multcomp                       # [build_platform != target_platform]
+    - r-nlme >=3.1_123                 # [build_platform != target_platform]
+    - r-polspline                      # [build_platform != target_platform]
+    - r-quantreg                       # [build_platform != target_platform]
+    - r-rpart                          # [build_platform != target_platform]
+    - r-sparsem                        # [build_platform != target_platform]
+    - r-survival                       # [build_platform != target_platform]
   host:
     - r-base
     - r-cluster
@@ -80,7 +97,6 @@ about:
   summary: "Regression modeling, testing, estimation, validation, graphics, prediction, and typesetting by storing enhanced model design attributes in the fit.  'rms' is a collection of functions that assist with and streamline modeling.  It also contains functions for binary and ordinal logistic regression models, ordinal
     models for continuous Y with a variety of distribution families, and the Buckley-James multiple regression model for right-censored responses, and implements penalized maximum likelihood estimation for logistic and ordinary linear models.  'rms' works with almost any regression model, but it was especially written to
     work with binary or ordinal regression models, Cox regression, accelerated failure time models, ordinary linear models,\tthe Buckley-James model, generalized least squares for serially or spatially correlated observations, generalized linear models, and quantile regression."
-  license_family: GPL2
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
