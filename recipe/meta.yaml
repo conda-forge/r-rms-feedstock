@@ -16,7 +16,11 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
-  skip: true  # [ppc64le]
+  skip: true  # [ppc64le or r_base == "4.3"]
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -32,57 +36,60 @@ requirements:
     - {{ posix }}coreutils             # [win]
     - {{ posix }}zip                   # [win]
     - cross-r-base {{ r_base }}        # [build_platform != target_platform]
+    - r-hmisc                          # [build_platform != target_platform]
+    - r-mass                           # [build_platform != target_platform]
+    - r-matrix                         # [build_platform != target_platform]
+    - r-sparsem                        # [build_platform != target_platform]
     - r-cluster                        # [build_platform != target_platform]
     - r-colorspace                     # [build_platform != target_platform]
     - r-digest                         # [build_platform != target_platform]
     - r-ggplot2                        # [build_platform != target_platform]
-    - r-hmisc >=5.1_0                  # [build_platform != target_platform]
-    - r-htmltable >=1.11.0             # [build_platform != target_platform]
+    - r-htmltable                      # [build_platform != target_platform]
     - r-htmltools                      # [build_platform != target_platform]
     - r-knitr                          # [build_platform != target_platform]
-    - r-mass                           # [build_platform != target_platform]
     - r-multcomp                       # [build_platform != target_platform]
-    - r-nlme >=3.1_123                 # [build_platform != target_platform]
+    - r-nlme                           # [build_platform != target_platform]
     - r-polspline                      # [build_platform != target_platform]
     - r-quantreg                       # [build_platform != target_platform]
     - r-rpart                          # [build_platform != target_platform]
-    - r-sparsem                        # [build_platform != target_platform]
     - r-survival                       # [build_platform != target_platform]
   host:
     - r-base
+    - r-hmisc >=5.2_2
+    - r-mass
+    - r-matrix
+    - r-sparsem
     - r-cluster
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
     - r-knitr
-    - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
     - r-polspline
     - r-quantreg
     - r-rpart
-    - r-sparsem
     - r-survival
   run:
     - r-base
+    - r-hmisc >=5.2_2
+    - r-mass
+    - r-matrix
+    - r-sparsem
     - r-cluster
     - r-colorspace
     - r-digest
     - r-ggplot2
-    - r-hmisc >=5.1_0
     - r-htmltable >=1.11.0
     - r-htmltools
     - r-knitr
-    - r-mass
     - r-multcomp
     - r-nlme >=3.1_123
     - r-polspline
     - r-quantreg
     - r-rpart
-    - r-sparsem
     - r-survival
 
 test:
