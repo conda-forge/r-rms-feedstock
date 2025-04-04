@@ -1,4 +1,4 @@
-{% set version = "7.0-0" %}
+{% set version = "8.0-0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rms_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rms/rms_{{ version }}.tar.gz
-  sha256: f72c6a798e649258aa4d9421113fef168563f26c7864a90bccfec7b4a43761a2
+  sha256: 278146d28b006fc0959b4a234f9c54fe9f052fe40e5d927a99bdd801a37c664a
 
 build:
   number: 0
