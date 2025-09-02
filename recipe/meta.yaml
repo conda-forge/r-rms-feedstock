@@ -16,7 +16,6 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
-  skip: true  # [ppc64le or r_base == "4.3"]
   missing_dso_whitelist:
     - '*/R.dll'        # [win]
     - '*/Rblas.dll'    # [win]
@@ -53,9 +52,10 @@ requirements:
     - r-quantreg                       # [build_platform != target_platform]
     - r-rpart                          # [build_platform != target_platform]
     - r-survival                       # [build_platform != target_platform]
+    - r-scales                         # [build_platform != target_platform]
   host:
     - r-base
-    - r-hmisc >=5.2_2
+    - r-hmisc >=5.2_3
     - r-mass
     - r-matrix
     - r-sparsem
@@ -72,6 +72,7 @@ requirements:
     - r-quantreg
     - r-rpart
     - r-survival
+    - r-scales
   run:
     - r-base
     - r-hmisc >=5.2_2
@@ -91,6 +92,7 @@ requirements:
     - r-quantreg
     - r-rpart
     - r-survival
+    - r-scales
 
 test:
   commands:
